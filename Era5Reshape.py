@@ -99,7 +99,7 @@ class Era5Reshape:
         print("all files are done...")
         return final_df
 
-    def resampleERA5(self,df:pd.DataFrame,resample_freq:str="30min") -> pd.DataFrame:
+    def resampleERA5(self,df:pd.DataFrame,resample_freq:str="30min") -> pd.Series:
         # assign a time index
         df.index = pd.to_datetime(df.valid_time)
         df.drop(["valid_time"], axis=1, inplace=True) # remove the duplicate column
@@ -109,7 +109,7 @@ class Era5Reshape:
         df["NetRadiation"] = df["ssr"] + df["str"]
         df["SW_out"] = df["ssrd"] - df["ssr"]
         df["LW_out"] = df["strd"] - df["str"]
-        df["PPFD"] = df["ssrd"] *2.04 # mu mol / m2 / s
+        df["PPFD"] = df["ssrd"] * 2.04 # mu mol / m2 / s
         print("Now start plot ERA5 variable and save it as pdf........")
 
         cols = ["ssrd", "strd", "ssr", "str", "NetRadiation","SW_out","LW_out","PPFD","stl1", "swvl1"]

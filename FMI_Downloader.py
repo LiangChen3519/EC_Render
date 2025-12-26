@@ -1,3 +1,7 @@
+# we delay this part, since i found that direct download form the FMI webpage is
+# more easy that run a script
+# so this class is delay and further check will be done in the main file
+
 import datetime as dt
 from fmiopendata.wfs import download_stored_query
 from __future__ import annotations
